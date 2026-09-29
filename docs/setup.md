@@ -48,18 +48,22 @@ Verify all three demo tags exist:
 ollama list | grep -E "llama3.1:8b-instruct-q4_K_M|llama3.1-8b-sk-lora|foundation-sec-8b-q4"
 ```
 
-## 5. Build the Customer-Knowledge index
+## 5. Customer-Knowledge index (ships prebuilt)
+
+The `customer_ck_chromadb/` vector store is **included in the repo** (~600 KB, fully synthetic), so the demo works out of the box — you can skip this step. You only need to rebuild it if you change `data/customer_pack/`:
 
 ```bash
 python data/build_ck_index.py --persist ./customer_ck_chromadb --device cpu \
        --embed-model models/bge-small-en-v1.5
 ```
 
-This builds the **CK-only** `latampay_ck` ChromaDB collection from `data/customer_pack/`. Rebuild it whenever `customer_pack/` changes.
+This builds the **CK-only** `latampay_ck` ChromaDB collection from `data/customer_pack/`. Note: the embedding model (step 3) is still required at query time to embed the scenario, even when using the prebuilt index.
 
 ## 6. Run the demo
 
 ```bash
+jupyter lab demo_session.ipynb    # the stage-by-stage session notebook
+# or the original walkthrough:
 jupyter lab workshop_demo.ipynb   # select the "LatamPay Demo" kernel
 ```
 

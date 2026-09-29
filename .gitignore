@@ -4,12 +4,15 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 
-# Model weights & vector stores — never commit (size + license)
+# Model weights — never commit (size + license); download from Hugging Face
 *.gguf
 *.safetensors
 *.bin
 models/bge-small-en-v1.5/
-customer_ck_chromadb/
+
+# Keep the tiny (~600 KB) synthetic CK vector index so the demo runs out of the box.
+# The negation re-includes its .bin HNSW files despite the *.bin rule above.
+!customer_ck_chromadb/**
 
 # Caches
 .cache/
