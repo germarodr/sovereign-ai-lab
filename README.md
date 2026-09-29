@@ -34,7 +34,6 @@ See [`docs/architecture.md`](docs/architecture.md) for the full design and pipel
 
 ```
 demo_session.ipynb     START HERE — the stage-by-stage session notebook (32-scenario benchmark)
-workshop_demo.ipynb    original end-to-end walkthrough
 data/                  LatamPay customer pack (SYNTHETIC) + 32 scenarios + eval scripts + CK index builder
   customer_pack/         assets, policy, incidents, SBOM, zones, data classification
   scenarios.json         the 32 benchmark scenarios
@@ -51,9 +50,8 @@ results/               output panels
 
 ## Two ways to run it
 
-### 1. The notebooks (the benchmark)
-- **[`demo_session.ipynb`](demo_session.ipynb)** — the recommended, attendee-friendly notebook. Each section *assembles* one stage's artifact; the final section runs all four stages across the **32 scenarios** and scores **SK** (correct weakness) and **CK** (customer facts grounded).
-- **[`workshop_demo.ipynb`](workshop_demo.ipynb)** — the original walkthrough.
+### 1. The notebook (the benchmark)
+- **[`demo_session.ipynb`](demo_session.ipynb)** — the attendee-friendly session notebook. Each section *assembles* one stage's artifact; the final section runs all four stages across the **32 scenarios** and scores **SK** (correct weakness) and **CK** (customer facts grounded).
 
 ### 2. The manual Ollama demo (the "SK ladder")
 A quick, live way to show security knowledge improving *in the weights* — no RAG, just the models. Three deterministic tags (see [`models/`](models)) answer the same prompt:

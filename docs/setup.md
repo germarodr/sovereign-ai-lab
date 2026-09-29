@@ -63,8 +63,6 @@ This builds the **CK-only** `latampay_ck` ChromaDB collection from `data/custome
 
 ```bash
 jupyter lab demo_session.ipynb    # the stage-by-stage session notebook
-# or the original walkthrough:
-jupyter lab workshop_demo.ipynb   # select the "LatamPay Demo" kernel
 ```
 
 Register the kernel once if needed:
