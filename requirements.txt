@@ -1,0 +1,8 @@
+# Demo runtime (Python 3.12). Pins finalized after validation.
+chromadb>=1.0
+sentence-transformers>=3.0
+requests>=2.31
+jupyterlab>=4.0
+ipykernel
+pandas
+numpy

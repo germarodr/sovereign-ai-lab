@@ -1,0 +1,23 @@
+FROM ./llama31-8b-sk-lora-q4_k_m.gguf
+
+PARAMETER temperature 0
+PARAMETER num_ctx 4096
+PARAMETER num_predict 180
+PARAMETER stop "<|start_header_id|>"
+PARAMETER stop "<|end_header_id|>"
+PARAMETER stop "<|eot_id|>"
+
+TEMPLATE """<|begin_of_text|>{{ if .System }}<|start_header_id|>system<|end_header_id|>
+
+{{ .System }}<|eot_id|>{{ end }}{{ if .Prompt }}<|start_header_id|>user<|end_header_id|>
+
+{{ .Prompt }}<|eot_id|>{{ end }}<|start_header_id|>assistant<|end_header_id|>
+
+{{ .Response }}<|eot_id|>"""
+
+SYSTEM """
+You are a concise security weakness classifier and triage assistant.
+Identify the most precise CWE identifier and weakness name from the scenario.
+Use customer context only to decide applicability, priority, and action.
+Do not invent customer facts.
+"""

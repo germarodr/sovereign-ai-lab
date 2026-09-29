@@ -1,0 +1,99 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-01-15T00:00:00Z",
+    "component": {
+      "type": "application",
+      "name": "LatamPay Platform",
+      "version": "2026.1",
+      "description": "LatamPay S.A. consolidated software bill of materials across customer-facing and internal services. SYNTHETIC DATA for workshop use only."
+    },
+    "properties": [
+      { "name": "latampay:note", "value": "Log4j (log4j-core) was fully removed across all services during the 2022 remediation program and replaced with Logback. It is intentionally NOT present in this SBOM." }
+    ]
+  },
+  "components": [
+    {
+      "type": "application",
+      "name": "payment-gateway",
+      "version": "8.4.0",
+      "description": "Internet-facing card payment gateway. Tier-0, in PCI-DSS scope. Uses database credentials for card authorization flows.",
+      "properties": [
+        { "name": "latampay:exposure", "value": "internet-facing" },
+        { "name": "latampay:tier", "value": "tier-0" },
+        { "name": "latampay:pci_scope", "value": "true" }
+      ]
+    },
+    {
+      "type": "framework",
+      "name": "Apache Struts",
+      "version": "2.5.33",
+      "description": "Web framework used by payment-gateway. Uses OGNL expression evaluation."
+    },
+    { "type": "framework", "name": "Spring Boot", "version": "3.2.4", "description": "Used by customer-portal backend, reconciliation-service, notification-service, and document-service." },
+    { "type": "library", "name": "Logback", "version": "1.5.3", "description": "Logging framework. Replaced Log4j across the fleet in 2022." },
+    {
+      "type": "application",
+      "name": "customer-portal",
+      "version": "5.1.2",
+      "description": "Internet-facing self-service portal. React SPA + Spring Boot backend with login and return URL redirect flow.",
+      "properties": [
+        { "name": "latampay:exposure", "value": "internet-facing" },
+        { "name": "latampay:tier", "value": "tier-1" }
+      ]
+    },
+    { "type": "library", "name": "React", "version": "18.3.1", "description": "customer-portal frontend." },
+    { "type": "application", "name": "Nginx", "version": "1.25.4", "description": "Reverse proxy / TLS termination in the DMZ." },
+    {
+      "type": "application",
+      "name": "reconciliation-service",
+      "version": "3.7.1",
+      "description": "Internal money-movement reconciliation service that consumes serialized settlement messages from a message queue, reconciles transactions, and exposes internal admin endpoints. Tier-1.",
+      "properties": [
+        { "name": "latampay:exposure", "value": "internal-only" },
+        { "name": "latampay:tier", "value": "tier-1" },
+        { "name": "latampay:note", "value": "Deserializes Java objects from the settlement queue." }
+      ]
+    },
+    {
+      "type": "application",
+      "name": "document-service",
+      "version": "2.0.9",
+      "description": "Internal service handling upload/download of customer KYC documents. Tier-1, stores PII.",
+      "properties": [
+        { "name": "latampay:exposure", "value": "internal-only" },
+        { "name": "latampay:tier", "value": "tier-1" },
+        { "name": "latampay:data", "value": "PII / KYC documents" }
+      ]
+    },
+    {
+      "type": "application",
+      "name": "notification-service",
+      "version": "1.9.0",
+      "description": "Internal notification service that delivers outbound webhooks/HTTP callbacks to merchant-supplied callback URLs. Runs in a cloud VPC.",
+      "properties": [
+        { "name": "latampay:exposure", "value": "internal-only" },
+        { "name": "latampay:tier", "value": "tier-2" },
+        { "name": "latampay:note", "value": "Makes outbound HTTP requests to URLs configured by merchants; runs in a VPC with a cloud metadata endpoint reachable." }
+      ]
+    },
+    {
+      "type": "application",
+      "name": "corporate-directory",
+      "version": "1.0",
+      "description": "Internal LDAP/Active Directory used for employee authentication. An internal admin tool builds LDAP filters from form input.",
+      "properties": [
+        { "name": "latampay:exposure", "value": "internal-only" },
+        { "name": "latampay:tier", "value": "tier-2" }
+      ]
+    },
+    { "type": "library", "name": "OpenLDAP client", "version": "2.6.7", "description": "Used by internal admin tool against corporate-directory." },
+    { "type": "database", "name": "PostgreSQL", "version": "14.11", "description": "Primary relational datastore for all services. No MySQL/MariaDB anywhere in the estate." },
+    { "type": "database", "name": "Redis", "version": "7.2.4", "description": "Caching and session store." }
+  ],
+  "properties": [
+    { "name": "latampay:not_in_estate", "value": "Log4j (removed 2022); MySQL/MariaDB; legacy SOAP/XML gateway (decommissioned 2024); WordPress" }
+  ]
+}

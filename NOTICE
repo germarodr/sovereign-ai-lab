@@ -1,0 +1,38 @@
+Sovereign AI Demo Lab
+Copyright 2026 German Rodriguez
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+the files in this repository except in compliance with the License. You may
+obtain a copy of the License at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+This project builds on, and interoperates with, third-party models, data, and
+software that carry their own licenses. Nothing here re-licenses them.
+
+Models and data
+----------------
+- Meta Llama 3.1 8B Instruct — (c) Meta Platforms, Inc. Used under the Llama 3.1
+  Community License (https://www.llama.com/llama3_1/license/). The SK-LoRA model
+  produced by this lab is a derivative of Llama 3.1 and is subject to that
+  license. "Built with Llama."
+- Cisco Foundation-Sec-8B (Foundation AI, Cisco) — open-weight, Apache-2.0.
+  See the model card and its NOTICE at https://huggingface.co/fdtn-ai .
+- BAAI bge-small-en-v1.5 embedding model — MIT License, Beijing Academy of
+  Artificial Intelligence (https://huggingface.co/BAAI/bge-small-en-v1.5).
+- MITRE CWE — (c) The MITRE Corporation, used for reference/attribution
+  (https://cwe.mitre.org/).
+- NVD / CVE data — U.S. National Vulnerability Database, public domain
+  (https://nvd.nist.gov/).
+
+Software dependencies
+---------------------
+- Ollama, llama.cpp, ChromaDB, sentence-transformers, and other packages listed
+  in requirements.txt are used under their respective open-source licenses.
+
+Synthetic data
+--------------
+All "LatamPay" content (customer pack, scenarios, SBOM, incidents) is entirely
+fictional and synthetic. It is not real customer data. This lab is for education
+and demonstration only and must not be used as a source of production security
+decisions. Model outputs can be wrong; keep a human in the loop.

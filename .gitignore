@@ -1,0 +1,19 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Model weights & vector stores — never commit (size + license)
+*.gguf
+*.safetensors
+*.bin
+models/bge-small-en-v1.5/
+customer_ck_chromadb/
+
+# Caches
+.cache/
+.hf_cache/
+
+# OS
+.DS_Store

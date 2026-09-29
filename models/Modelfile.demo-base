@@ -1,0 +1,8 @@
+FROM llama3.1:8b-instruct-q4_K_M
+
+PARAMETER temperature 0
+PARAMETER num_ctx 4096
+PARAMETER num_predict 200
+PARAMETER stop "<|start_header_id|>"
+PARAMETER stop "<|end_header_id|>"
+PARAMETER stop "<|eot_id|>"
